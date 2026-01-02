@@ -12,7 +12,20 @@
           "package_name": "com.example.wotstats"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "24331999240-uo7r0e41g9ctu8pb4u5tqdiu4uot5hvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wotstats",
+            "certificate_hash": "59fc3e80bbc7993c352ca578d5c33e87ad0c9af8"
+          }
+        },
+        {
+          "client_id": "24331999240-7kataqtmubuvhjije7oh6cq69bh9mneu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB4T4Ek5razq1a2ck1gswJm69_lS16hZrY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24331999240-7kataqtmubuvhjije7oh6cq69bh9mneu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
