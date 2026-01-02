@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "24331999240",
+    "project_id": "wot-stats-db94b",
+    "storage_bucket": "wot-stats-db94b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24331999240:android:5f0b6f7796e9193b8b59bd",
+        "android_client_info": {
+          "package_name": "com.example.wotstats"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4T4Ek5razq1a2ck1gswJm69_lS16hZrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
