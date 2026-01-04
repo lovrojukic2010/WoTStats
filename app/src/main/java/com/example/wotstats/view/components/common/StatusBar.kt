@@ -1,4 +1,4 @@
-package com.example.wotstats.view.components
+package com.example.wotstats.view.components.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

@@ -15,8 +15,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.example.wotstats.R
 import com.example.wotstats.authentication.SignInState
-import com.example.wotstats.view.components.GoogleButton
-import com.example.wotstats.view.components.Title
+import com.example.wotstats.view.components.signin.GoogleButton
+import com.example.wotstats.view.components.signin.Title
 
 @Composable
 fun SignInScreen(

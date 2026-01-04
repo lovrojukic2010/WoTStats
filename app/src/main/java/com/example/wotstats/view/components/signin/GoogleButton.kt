@@ -1,4 +1,4 @@
-package com.example.wotstats.view.components
+package com.example.wotstats.view.components.signin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
