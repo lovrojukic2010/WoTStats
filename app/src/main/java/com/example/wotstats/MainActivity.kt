@@ -10,9 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.wotstats.ui.theme.WoTStatsTheme
 import com.example.wotstats.view.screen.MainScreen
-import org.koin.core.component.KoinComponent
 
-class MainActivity : ComponentActivity(), KoinComponent {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

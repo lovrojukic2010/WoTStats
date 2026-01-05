@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,7 +22,6 @@ import com.example.wotstats.view.navigation.Screen
 import com.example.wotstats.viewmodel.SignInViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun MainScreen() {
@@ -36,7 +36,7 @@ fun MainScreen() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.SignInScreen.route) {
         composable(Screen.SignInScreen.route) {
-            val signInViewModel: SignInViewModel = koinViewModel()
+            val signInViewModel: SignInViewModel = viewModel()
             val state by signInViewModel.state.collectAsStateWithLifecycle()
             val coroutineScope = rememberCoroutineScope()
 
