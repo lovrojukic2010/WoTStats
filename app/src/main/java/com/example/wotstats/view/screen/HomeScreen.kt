@@ -27,6 +27,7 @@ fun HomeScreen(
     onSignOut: () -> Unit,
     navController: NavController
 ) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
