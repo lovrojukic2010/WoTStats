@@ -13,6 +13,6 @@ interface WotApi {
         @Query("page_no") pageNo: Int,
         @Query("tier") tier: Int? = null,
         @Query("nation") nation: String? = null,
-        @Query("fields") fields: String = "tank_id,name,short_name,nation,tier,type,images"
+        @Query("fields") fields: String = "tank_id,name,short_name,nation,tier,images"
     ): WotVehiclesResponse
 }

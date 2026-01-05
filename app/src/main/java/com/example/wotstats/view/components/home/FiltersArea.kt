@@ -7,20 +7,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.wotstats.R
 
 @Composable
-fun FiltersArea() {
-    var selectedTier by remember { mutableStateOf(0) }
-    var selectedNation by remember { mutableStateOf(0) }
-
+fun FiltersArea(
+    selectedTier: Int?,
+    selectedNation: String?,
+    onTierSelected: (Int?) -> Unit,
+    onNationSelected: (String?) -> Unit
+) {
     val tiers = listOf("All", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI")
     val nations = listOf(
         "All",
@@ -38,8 +36,7 @@ fun FiltersArea() {
     )
 
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -49,10 +46,11 @@ fun FiltersArea() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             tiers.forEachIndexed { index, tier ->
+                val tierValue: Int? = if (index == 0) null else index
                 TierFilterButton(
                     text = tier,
-                    selected = index == selectedTier,
-                    onClick = { selectedTier = index }
+                    selected = tierValue == selectedTier,
+                    onClick = { onTierSelected(tierValue) }
                 )
                 Spacer(Modifier.height(8.dp))
             }
@@ -65,10 +63,13 @@ fun FiltersArea() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             nations.forEachIndexed { index, nation ->
+                val nationValue: String? =
+                    if (index == 0) null else nation.lowercase()
+
                 if (index == 0) {
                     NationAllButton(
-                        selected = selectedNation == 0,
-                        onClick = { selectedNation = 0 }
+                        selected = selectedNation == null,
+                        onClick = { onNationSelected(null) }
                     )
                 } else {
                     val resId = when (nation) {
@@ -87,8 +88,8 @@ fun FiltersArea() {
                     }
                     NationFilterButton(
                         flagRes = resId,
-                        selected = index == selectedNation,
-                        onClick = { selectedNation = index }
+                        selected = nationValue == selectedNation,
+                        onClick = { onNationSelected(nationValue) }
                     )
                 }
                 Spacer(Modifier.height(8.dp))

@@ -10,6 +10,5 @@ data class Vehicle(
     val shortName: String?,
     val nation: String?,
     val tier: Int?,
-    val type: String?,
     val images: VehicleImages?
 )
