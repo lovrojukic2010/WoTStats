@@ -1,6 +1,5 @@
 package com.example.wotstats.view.screen
 
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +22,6 @@ import com.example.wotstats.view.components.home.BottomNavButton
 import com.example.wotstats.view.components.home.FiltersArea
 
 @Composable
-@RequiresApi(29)
 fun HomeScreen(
     userData: UserData?,
     onSignOut: () -> Unit,
@@ -33,7 +31,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .paint(
-                painterResource(id = R.drawable.background),
+                painterResource(id = R.drawable.home_background),
                 contentScale = ContentScale.FillBounds,
             )
     ) {

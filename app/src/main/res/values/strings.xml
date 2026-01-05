@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">WoTStats</string>
-    <string name="app_title">WoT Stats</string>
+    <string name="app_title">WoT\nStats</string>
     <string name="web_client_id">24331999240-7kataqtmubuvhjije7oh6cq69bh9mneu.apps.googleusercontent.com</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="no_google_account">Please add Google account to your phone</string>
