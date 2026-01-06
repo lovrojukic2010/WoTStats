@@ -1,6 +1,7 @@
 package com.example.wotstats.view.components.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -29,14 +30,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.wotstats.api.data.Vehicle
 import com.example.wotstats.extension.toRomanTier
+import com.example.wotstats.view.navigation.Screen
 import com.example.wotstats.viewmodel.VehiclesViewModel
 
 @Composable
 fun TanksList(
-    viewModel: VehiclesViewModel
+    viewModel: VehiclesViewModel,
+    navController: NavController
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -58,6 +62,11 @@ fun TanksList(
 
             TankRow(
                 tank = tank,
+                onClick = {
+                    navController.navigate(
+                        Screen.VehicleDetailScreen.createRoute(tank.tankId)
+                    )
+                },
                 isInComparison = isInComparison,
                 isFavourite = isFavourite,
                 comparisonDisabled = comparisonFullAndNotThis,
@@ -71,6 +80,7 @@ fun TanksList(
 @Composable
 fun TankRow(
     tank: Vehicle,
+    onClick: () -> Unit,
     isInComparison: Boolean,
     isFavourite: Boolean,
     comparisonDisabled: Boolean,
@@ -80,6 +90,7 @@ fun TankRow(
     Row(
         modifier = Modifier
             .width(220.dp)
+            .clickable { onClick() }
             .padding(horizontal = 2.dp, vertical = 2.dp)
             .background(
                 color = Color.White.copy(alpha = 0.6f),

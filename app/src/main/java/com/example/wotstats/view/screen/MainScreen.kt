@@ -12,14 +12,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.wotstats.R
 import com.example.wotstats.authentication.GoogleAuthClient
 import com.example.wotstats.extension.NetworkChecker
 import com.example.wotstats.view.navigation.Screen
 import com.example.wotstats.viewmodel.SignInViewModel
+import com.example.wotstats.viewmodel.VehiclesViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -107,10 +110,94 @@ fun MainScreen() {
                             R.string.sign_out_success,
                             Toast.LENGTH_SHORT,
                         ).show()
-                        navController.popBackStack()
+                        navController.navigate(Screen.SignInScreen.route) {
+                            popUpTo(Screen.SignInScreen.route)
+                        }
                     }
                 },
                 navController = navController,
+            )
+        }
+
+        composable(Screen.FavoritesScreen.route) {
+            val vehiclesViewModel: VehiclesViewModel = viewModel()
+            val coroutineScope = rememberCoroutineScope()
+            FavoritesScreen(
+                userData = googleAuthClient.getSignedInUser(),
+                onSignOut = {
+                    coroutineScope.launch {
+                        googleAuthClient.signOut()
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.sign_out_success,
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                        navController.navigate(Screen.SignInScreen.route) {
+                            popUpTo(Screen.SignInScreen.route)
+                        }
+                    }
+                },
+                navController = navController,
+                vehiclesViewModel = vehiclesViewModel
+            )
+        }
+
+        composable(
+            route = Screen.ComparisonScreen.route,
+            arguments = listOf(
+                navArgument("firstTankId") { type = NavType.IntType },
+                navArgument("secondTankId") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val firstTankId = backStackEntry.arguments?.getInt("firstTankId") ?: 0
+            val secondTankId = backStackEntry.arguments?.getInt("secondTankId") ?: 0
+            val coroutineScope = rememberCoroutineScope()
+            ComparisonScreen(
+                userData = googleAuthClient.getSignedInUser(),
+                onSignOut = {
+                    coroutineScope.launch {
+                        googleAuthClient.signOut()
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.sign_out_success,
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                        navController.navigate(Screen.SignInScreen.route) {
+                            popUpTo(Screen.SignInScreen.route)
+                        }
+                    }
+                },
+                navController = navController,
+                firstTankId = firstTankId,
+                secondTankId = secondTankId
+            )
+        }
+
+        composable(
+            route = Screen.VehicleDetailScreen.route,
+            arguments = listOf(
+                navArgument("tankId") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val tankId = backStackEntry.arguments?.getInt("tankId") ?: 0
+            val coroutineScope = rememberCoroutineScope()
+            VehicleDetailScreen(
+                userData = googleAuthClient.getSignedInUser(),
+                onSignOut = {
+                    coroutineScope.launch {
+                        googleAuthClient.signOut()
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.sign_out_success,
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                        navController.navigate(Screen.SignInScreen.route) {
+                            popUpTo(Screen.SignInScreen.route)
+                        }
+                    }
+                },
+                navController = navController,
+                tankId = tankId
             )
         }
     }
