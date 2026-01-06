@@ -3,9 +3,11 @@ package com.example.wotstats.view.components.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -43,36 +45,49 @@ fun TanksList(
     navController: NavController
 ) {
     val state by viewModel.uiState.collectAsState()
-
-    LazyColumn(
-        contentPadding = PaddingValues(vertical = 0.dp)
-    ) {
-        itemsIndexed(state.tanks) { index, tank ->
-            if (index == state.tanks.lastIndex && !state.isLoading && !state.endReached) {
-                viewModel.loadNextPage()
-            }
-
-            val id = tank.tankId
-
-            val isInComparison = state.comparisonIds.contains(id)
-            val isFavourite = state.favouriteIds.contains(id)
-
-            val comparisonFullAndNotThis =
-                state.comparisonIds.size >= 2 && !isInComparison
-
-            TankRow(
-                tank = tank,
-                onClick = {
-                    navController.navigate(
-                        Screen.VehicleDetailScreen.createRoute(tank.tankId)
-                    )
-                },
-                isInComparison = isInComparison,
-                isFavourite = isFavourite,
-                comparisonDisabled = comparisonFullAndNotThis,
-                onCompareClick = { viewModel.onCompareClicked(it) },
-                onFavouriteClick = { viewModel.onFavouriteClicked(it) }
+    if (state.tanks.isEmpty() && !state.isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "No vehicles to display",
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 18.sp,
+                color = Color.White
             )
+        }
+    } else {
+        LazyColumn(
+            contentPadding = PaddingValues(vertical = 0.dp)
+        ) {
+            itemsIndexed(state.tanks) { index, tank ->
+                if (index == state.tanks.lastIndex && !state.isLoading && !state.endReached) {
+                    viewModel.loadNextPage()
+                }
+
+                val id = tank.tankId
+
+                val isInComparison = state.comparisonIds.contains(id)
+                val isFavourite = state.favouriteIds.contains(id)
+
+                val comparisonFullAndNotThis =
+                    state.comparisonIds.size >= 2 && !isInComparison
+
+                TankRow(
+                    tank = tank,
+                    onClick = {
+                        navController.navigate(
+                            Screen.VehicleDetailScreen.createRoute(tank.tankId)
+                        )
+                    },
+                    isInComparison = isInComparison,
+                    isFavourite = isFavourite,
+                    comparisonDisabled = comparisonFullAndNotThis,
+                    onCompareClick = { viewModel.onCompareClicked(it) },
+                    onFavouriteClick = { viewModel.onFavouriteClicked(it) }
+                )
+            }
         }
     }
 }
