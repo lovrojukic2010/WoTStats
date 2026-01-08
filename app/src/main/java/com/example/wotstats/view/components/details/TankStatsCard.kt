@@ -1,4 +1,4 @@
-package com.example.wotstats.view.components.stats
+package com.example.wotstats.view.components.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.wotstats.api.data.AmmoDetails
 import com.example.wotstats.api.data.Vehicle
+import com.example.wotstats.view.components.common.CommonUtils.Companion.resolveAmmo
 import kotlin.math.floor
 
 @Composable
@@ -39,9 +39,10 @@ fun TankStatsCard(
     val power = tank?.details?.engine?.power ?: 0
     val dispersion = tank?.details?.gun?.dispersion ?: 0.0
     val caliber = tank?.details?.gun?.caliber ?: 0
+    val rateOfFire = tank?.details?.gun?.fireRate ?: 0.0f
     var dpm = 0
-    if (damage != 0 && reload != 0.0f) {
-        dpm = floor(60f / reload).toInt() * damage
+    if (damage != 0) {
+        dpm = floor(rateOfFire).toInt() * damage
     }
 
     Column(
@@ -117,21 +118,4 @@ private fun StatRow(
         Text(text = label, color = Color.Black)
         Text(text = value, color = Color.Black)
     }
-}
-
-private fun resolveAmmo(ammoDetails: List<AmmoDetails>?): AmmoDetails? {
-    if (ammoDetails == null) {
-        return null
-    }
-    var goldGrenade = AmmoDetails(listOf(0, 0, 0), listOf(0, 0, 0))
-    var normalGrenade = AmmoDetails(listOf(0, 0, 0), listOf(0, 0, 0))
-    for (detail in ammoDetails) {
-        if (detail.penetration[1] >= goldGrenade.penetration[1]) {
-            normalGrenade = goldGrenade
-            goldGrenade = detail
-        } else if (detail.penetration[1] >= normalGrenade.penetration[1]) {
-            normalGrenade = detail
-        }
-    }
-    return normalGrenade
 }

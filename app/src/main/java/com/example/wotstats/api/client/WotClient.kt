@@ -17,13 +17,17 @@ class WotClient(
         tankId: List<Int> = emptyList(),
         fields: String
     ): WotVehiclesResponse {
+        var tankIds: String? = null
+        if(!tankId.isEmpty()){
+            tankIds = tankId.joinToString(",")
+        }
         return api.getVehicles(
             appId = applicationId,
             limit = limit,
             pageNo = pageNo,
             tier = tier,
             nation = nation,
-            tankId = tankId,
+            tankId = tankIds,
             fields = fields
         )
     }

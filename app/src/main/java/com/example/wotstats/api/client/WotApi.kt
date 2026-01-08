@@ -10,7 +10,7 @@ interface WotApi {
     suspend fun getVehicles(
         @Query("application_id") appId: String,
         @Query("limit") limit: Int,
-        @Query("tank_id") tankId: List<Int> = emptyList(),
+        @Query("tank_id") tankId: String?,
         @Query("page_no") pageNo: Int,
         @Query("tier") tier: Int? = null,
         @Query("nation") nation: String? = null,

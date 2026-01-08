@@ -29,7 +29,7 @@ import com.example.wotstats.api.service.WotService
 import com.example.wotstats.authentication.UserData
 import com.example.wotstats.view.components.common.StatusBar
 import com.example.wotstats.view.components.home.BottomNavButton
-import com.example.wotstats.view.components.stats.TankStatsCard
+import com.example.wotstats.view.components.details.TankStatsCard
 
 @Composable
 fun VehicleDetailScreen(
