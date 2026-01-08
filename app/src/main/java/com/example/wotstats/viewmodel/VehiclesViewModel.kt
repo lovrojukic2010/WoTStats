@@ -61,7 +61,8 @@ class VehiclesViewModel(
                     limit = pageSize,
                     pageNo = state.pageNo,
                     tier = state.selectedTier,
-                    nation = state.selectedNation
+                    nation = state.selectedNation,
+                    fields = "tank_id,name,short_name,nation,tier,images.big_icon"
                 )
 
                 _uiState.update {

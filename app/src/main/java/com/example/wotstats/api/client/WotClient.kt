@@ -13,7 +13,9 @@ class WotClient(
         limit: Int,
         pageNo: Int,
         tier: Int? = null,
-        nation: String? = null
+        nation: String? = null,
+        tankId: List<Int> = emptyList(),
+        fields: String
     ): WotVehiclesResponse {
         return api.getVehicles(
             appId = applicationId,
@@ -21,6 +23,8 @@ class WotClient(
             pageNo = pageNo,
             tier = tier,
             nation = nation,
+            tankId = tankId,
+            fields = fields
         )
     }
 

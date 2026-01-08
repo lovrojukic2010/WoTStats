@@ -10,5 +10,7 @@ data class Vehicle(
     val shortName: String?,
     val nation: String?,
     val tier: Int?,
-    val images: VehicleImages?
+    val images: VehicleImages?,
+    @SerializedName("default_profile")
+    val details: VehicleDetails?
 )

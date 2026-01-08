@@ -10,13 +10,17 @@ class WotService (
         limit: Int,
         pageNo: Int,
         tier: Int? = null,
-        nation: String? = null
+        nation: String? = null,
+        tankId: List<Int> = emptyList(),
+        fields: String
     ): List<Vehicle> {
         val response = client.getVehicles(
             limit = limit,
             pageNo = pageNo,
             tier = tier,
-            nation = nation
+            nation = nation,
+            tankId = tankId,
+            fields = fields
         )
         return response.data.values.toList()
     }
