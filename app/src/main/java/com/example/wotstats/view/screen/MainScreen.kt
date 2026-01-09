@@ -22,7 +22,6 @@ import com.example.wotstats.authentication.GoogleAuthClient
 import com.example.wotstats.extension.NetworkChecker
 import com.example.wotstats.view.navigation.Screen
 import com.example.wotstats.viewmodel.SignInViewModel
-import com.example.wotstats.viewmodel.VehiclesViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 
@@ -120,7 +119,6 @@ fun MainScreen() {
         }
 
         composable(Screen.FavoritesScreen.route) {
-            val vehiclesViewModel: VehiclesViewModel = viewModel()
             val coroutineScope = rememberCoroutineScope()
             FavoritesScreen(
                 userData = googleAuthClient.getSignedInUser(),
@@ -137,8 +135,7 @@ fun MainScreen() {
                         }
                     }
                 },
-                navController = navController,
-                vehiclesViewModel = vehiclesViewModel
+                navController = navController
             )
         }
 

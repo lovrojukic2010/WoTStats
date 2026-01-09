@@ -6,34 +6,32 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.wotstats.R
 import com.example.wotstats.authentication.UserData
 import com.example.wotstats.view.components.common.StatusBar
+import com.example.wotstats.view.components.favorites.FavoritesList
 import com.example.wotstats.view.components.home.BottomNavButton
-import com.example.wotstats.viewmodel.VehiclesViewModel
+import com.example.wotstats.viewmodel.FavoritesViewModel
 
 @Composable
 fun FavoritesScreen(
     userData: UserData?,
     onSignOut: () -> Unit,
     navController: NavController,
-    vehiclesViewModel: VehiclesViewModel
 ) {
-    val state by vehiclesViewModel.uiState.collectAsState()
-
+    val favoritesViewModel: FavoritesViewModel = viewModel()
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +53,18 @@ fun FavoritesScreen(
                     .fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = state.favouriteIds.toString())
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(550.dp)
+                        .align(Alignment.Center),
+                    contentAlignment = Alignment.Center
+                ) {
+                    FavoritesList(
+                        viewModel = favoritesViewModel,
+                        navController = navController
+                    )
+                }
             }
             Row(
                 modifier = Modifier
