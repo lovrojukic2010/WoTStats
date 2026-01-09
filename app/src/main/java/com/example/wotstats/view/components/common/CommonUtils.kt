@@ -8,6 +8,10 @@ class CommonUtils {
             if (ammoDetails == null) {
                 return null
             }
+
+            if (ammoDetails.size == 1) {
+                return ammoDetails[0]
+            }
             var goldGrenade = AmmoDetails(listOf(0, 0, 0), listOf(0, 0, 0))
             var normalGrenade = AmmoDetails(listOf(0, 0, 0), listOf(0, 0, 0))
             for (detail in ammoDetails) {
