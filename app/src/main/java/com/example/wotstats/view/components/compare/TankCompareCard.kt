@@ -127,15 +127,15 @@ fun TankCompareCard(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             StatCompareRow("Damage", leftDamage, rightDamage, moreIsBetter = true)
-            StatCompareRow("Reload (s)", leftReload, rightReload, moreIsBetter = false)
+            StatCompareRow("Reload (sec)", leftReload, rightReload, moreIsBetter = false)
             StatCompareRow("Top speed (km/h)", leftSpeed, rightSpeed, moreIsBetter = true)
             StatCompareRow("Health", leftHp, rightHp, moreIsBetter = true)
-            StatCompareRow("Caliber", leftCaliber, rightCaliber, moreIsBetter = true)
-            StatCompareRow("Penetration", leftPen, rightPen, moreIsBetter = true)
+            StatCompareRow("Caliber (mm)", leftCaliber, rightCaliber, moreIsBetter = true)
+            StatCompareRow("Penetration (mm)", leftPen, rightPen, moreIsBetter = true)
             StatCompareRow("Weight (kg)", leftWeight, rightWeight, moreIsBetter = false)
-            StatCompareRow("Power", leftPower, rightPower, moreIsBetter = true)
+            StatCompareRow("Power (hp)", leftPower, rightPower, moreIsBetter = true)
             StatCompareRow("DPM", leftDpm, rightDpm, moreIsBetter = true)
-            StatCompareRow("Dispersion", leftDisp, rightDisp, moreIsBetter = false)
+            StatCompareRow("Dispersion (m/100m)", leftDisp, rightDisp, moreIsBetter = false)
         }
     }
 }

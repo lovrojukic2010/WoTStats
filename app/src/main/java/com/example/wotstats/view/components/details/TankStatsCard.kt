@@ -92,15 +92,15 @@ fun TankStatsCard(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 StatRow(label = "Damage", value = damage.toString())
-                StatRow(label = "Reload (s)", value = reload.toString())
+                StatRow(label = "Reload (sec)", value = reload.toString())
                 StatRow(label = "Top speed (km/h)", value = topSpeed.toString())
                 StatRow(label = "Health", value = hp.toString())
-                StatRow(label = "Caliber", value = caliber.toString())
-                StatRow(label = "Penetration", value = penetration.toString())
+                StatRow(label = "Caliber (mm)", value = caliber.toString())
+                StatRow(label = "Penetration (mm)", value = penetration.toString())
                 StatRow(label = "Weight (kg)", value = weight.toString())
-                StatRow(label = "Power", value = power.toString())
+                StatRow(label = "Power (hp)", value = power.toString())
                 StatRow(label = "DPM", value = dpm.toString())
-                StatRow(label = "Dispersion", value = dispersion.toString())
+                StatRow(label = "Dispersion (m/100m)", value = dispersion.toString())
             }
         }
     }
