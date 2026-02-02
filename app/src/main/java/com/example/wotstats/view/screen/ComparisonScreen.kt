@@ -39,7 +39,7 @@ fun ComparisonScreen(
     firstTankId: Int,
     secondTankId: Int
 ) {
-    val service = WotService(WotClient.WotService.client)
+    val service = WotService(WotClient.WotClientProvider.client)
     var firstTank by remember { mutableStateOf<Vehicle?>(null) }
     var secondTank by remember { mutableStateOf<Vehicle?>(null) }
     val fields = stringResource(R.string.vehicle_details_fields)

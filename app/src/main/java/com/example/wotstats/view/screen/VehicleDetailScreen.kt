@@ -38,7 +38,7 @@ fun VehicleDetailScreen(
     navController: NavController,
     tankId: Int
 ) {
-    val service = WotService(WotClient.WotService.client)
+    val service = WotService(WotClient.WotClientProvider.client)
     var tank by remember { mutableStateOf<Vehicle?>(null) }
     val fields = stringResource(R.string.vehicle_details_fields)
     LaunchedEffect(tankId) {

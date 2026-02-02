@@ -20,7 +20,7 @@ class VehiclesViewModel(
     private val favouritesCollection = "wot-stats"
 
     private val favouritesField = "favourites"
-    private val service: WotService = WotService(WotClient.WotService.client)
+    private val service: WotService = WotService(WotClient.WotClientProvider.client)
     private val _uiState = MutableStateFlow(VehiclesUiState())
     val uiState: StateFlow<VehiclesUiState> = _uiState
 

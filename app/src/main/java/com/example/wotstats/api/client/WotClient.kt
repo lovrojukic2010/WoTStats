@@ -44,7 +44,7 @@ class WotClient(
         }
     }
 
-    object WotService {
+    object WotClientProvider {
         private const val APPLICATION_ID = "c7e9797137a92004d350eb3d56c5d0bd"
 
         val client: WotClient by lazy {

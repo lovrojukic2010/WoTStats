@@ -19,7 +19,7 @@ class FavoritesViewModel : ViewModel() {
     private val favouritesCollection = "wot-stats"
     private val favouritesField = "favourites"
 
-    private val service: WotService = WotService(WotClient.WotService.client)
+    private val service: WotService = WotService(WotClient.WotClientProvider.client)
 
     private val _uiState = MutableStateFlow(FavoritesUiState())
     val uiState: StateFlow<FavoritesUiState> = _uiState
